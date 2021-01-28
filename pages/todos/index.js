@@ -5,7 +5,7 @@ import Error from 'next/error';
 const Home = ({ todos, error }) => {
   if (error) {
     return <Error title={error.errorMessage} statusCode={error.statusCode} />
-}
+  }
   return (
     <div className="container">
       <h1>Todos..</h1>
@@ -20,7 +20,6 @@ const Home = ({ todos, error }) => {
                   <li><span> completed : </span>{td.completed ? 'true' : 'false'}</li>
                 </a>
               </Link>
-
             </ul>
           )
         })

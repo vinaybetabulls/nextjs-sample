@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Highlighted snapshot tests renders the correct snapshot for Highlighted text 1`] = `
+<div>
+  <span>
+    <mark>
+      test
+    </mark>
+    <span>
+      ing
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Highlighted snapshot tests renders the correct snapshot when the highlighted text does not match 1`] = `
+<div>
+  <span>
+    <span>
+      testing
+    </span>
+  </span>
+</div>
+`;

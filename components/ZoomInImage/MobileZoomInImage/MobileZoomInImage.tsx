@@ -20,6 +20,8 @@ const MobileZoomInImage = ({ image }: Props) => {
       if (img) {
         const value = make3dTransformValue({ x, y, scale });
         img?.style?.setProperty("transform", value);
+        img?.style?.setProperty("minHeight", "335px");
+        img?.style?.setProperty("minWidth", "335px");
       }
     },
     [imgRef, imageContainerRef]

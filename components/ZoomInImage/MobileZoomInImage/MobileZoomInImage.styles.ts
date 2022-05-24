@@ -7,6 +7,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: "82% !important",
+      minHeight: "335px",
+      minWidth: "335px",
     },
   },
   mobileImageContainer: {

@@ -5,10 +5,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     maxWidth: "100%",
     width: "100%",
+    minHeight: "335px",
+    minWidth: "335px",
     [theme.breakpoints.up("sm")]: {
       width: "82% !important",
-      minHeight: "335px",
-      minWidth: "335px",
     },
   },
   mobileImageContainer: {

@@ -53,5 +53,43 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  squareImage: {
+    [theme.breakpoints.up("xs")]: {
+      // Use padding top to make image square
+      paddingTop: "100%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      // Use padding top to make image square
+      paddingTop: "50%",
+    },
+  },
+  image: {
+    // default on mobile the image is full width and positioned above or below the content
+    width: "100%",
+    position: "relative",
+    "& img": {
+      // img fills the relative container (image or container) using absolute and cover
+      objectFit: "cover",
+      display: "block",
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      left: 0,
+      top: 0,
+    },
+
+    // Make square on mobile
+    paddingTop: "100%",
+    [theme.breakpoints.up("xs")]: {
+      // Use min heights on tablet up
+      paddingTop: 0,
+    },
+    [theme.breakpoints.up("sm")]: {
+      // default on desktop is for image to be 50% wide unless fullImage
+      width: "50%",
+    },
+    // backup  image min height if other min heights not used
+    minHeight: "200px",
+  },
 }));
 export default useStyles;

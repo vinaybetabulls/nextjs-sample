@@ -15,7 +15,7 @@ const MobileZoomInImage = ({ image }: Props) => {
   return (
     <div className={classes.container}>
       {/* documentation link https://github.com/retyui/react-quick-pinch-zoom/blob/master/docs/api/README.md  */}
-      <TransformWrapper centerOnInit>
+      <TransformWrapper centerOnInit centerZoomedOut>
         <TransformComponent>
           <div className={classes.mobileImageContainer}>
             <img src={image.url} alt={image.altText} ref={imgRef} />

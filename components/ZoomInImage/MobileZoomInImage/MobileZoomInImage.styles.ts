@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "& img": {
       [theme.breakpoints.down("sm")]: {
-        height: "calc(100vh - 170px)",
+        height: "calc(100vh - 170px) !important",
         "@media (orientation: landscape)": {
           height: "calc(100vh - 132px)",
         },

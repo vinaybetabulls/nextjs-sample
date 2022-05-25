@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from "react";
-import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
+// import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Image as ImageProps } from "../../../common/props";
 import useStyles from "./MobileZoomInImage.styles";
 
@@ -8,35 +9,19 @@ type Props = {
 };
 
 const MobileZoomInImage = ({ image }: Props) => {
-  console.log("mobile.... image...");
   const classes = useStyles();
   const imgRef = useRef<HTMLImageElement>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-  const onUpdate = useCallback(
-    ({ x, y, scale }) => {
-      const { current: img } = imgRef;
-      const { current: div } = imageContainerRef;
-      const imgBounds = img?.getBoundingClientRect();
-      console.log("top", imgBounds.top <= 196, imgBounds.top);
-      console.log("bottom", imgBounds.bottom <= 196, imgBounds.bottom);
-      if (img && imgBounds.top <= 196) {
-        console.log({ imgBounds });
-        const value = make3dTransformValue({ x, y, scale });
-        img?.style?.setProperty("transform", value);
-      }
-    },
-    [imgRef, imageContainerRef]
-  );
 
   return (
     <div className={classes.container}>
       {/* documentation link https://github.com/retyui/react-quick-pinch-zoom/blob/master/docs/api/README.md  */}
-      <QuickPinchZoom
-        onUpdate={onUpdate}
-        containerProps={{ className: classes.mobileImageContainer }}
-      >
-        <img src={image.url} alt={image.altText} ref={imgRef} />
-      </QuickPinchZoom>
+      <TransformWrapper>
+        <TransformComponent>
+          <div className={classes.mobileImageContainer}>
+            <img src={image.url} alt={image.altText} ref={imgRef} />
+          </div>
+        </TransformComponent>
+      </TransformWrapper>
       {!!image.label && (
         <div className={classes.productName}>
           <p>{image.label}</p>

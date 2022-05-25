@@ -19,32 +19,70 @@ const MobileZoomInImage = ({ image }: Props) => {
   const classes = useStyles();
   const imgRef = useRef<HTMLImageElement>(null);
   const theme = useTheme();
-  const maxWidth = 480;
-  const imageWidths = [240, 384, 480, 960];
-  const processedUrl = processImageUrl(
-    image.url,
-    { w: maxWidth, img404: "not-available" },
-    ["$poi-square$"]
-  );
+  const imageUrl =
+    image?.url &&
+    processImageUrl(
+      image.url,
+      {
+        w: theme.breakpoints.values.xl / 2,
+        aspect: squareImage ? "1:1" : "2:1",
+      },
+      ["$poi-square$"]
+    );
 
-  // Get all the image sizes less than the max height except 1
-  const filteredImageWidths = filterImageWidths(imageWidths, maxWidth);
+  const breakpoints: {
+    breakpoint: Breakpoint;
+    query: "min-width" | "max-width";
+    w: number;
+    aspect: string;
+  }[] = [
+    {
+      breakpoint: "xs",
+      query: "max-width",
+      w: theme.breakpoints.values.xs,
+      aspect: "1:1",
+    },
+    {
+      breakpoint: "sm",
+      query: "max-width",
+      w: theme.breakpoints.values.sm,
+      aspect: squareImage ? "1:1" : "2:1",
+    },
+    {
+      breakpoint: "md",
+      query: "max-width",
+      w: theme.breakpoints.values.md / 2,
+      aspect: squareImage ? "1:1" : "1:1",
+    },
+    {
+      breakpoint: "lg",
+      query: "max-width",
+      w: theme.breakpoints.values.lg / 2,
+      aspect: squareImage ? "1:1" : "1:1",
+    },
+  ];
+  const images = image?.url
+    ? breakpoints.map(({ breakpoint, query, w, aspect }) => ({
+        breakpoint,
+        query,
+        filename: processImageUrl(image.url, { w, aspect }, ["$poi-square$"]),
+      }))
+    : undefined;
 
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>
-        <TransformWrapper centerOnInit centerZoomedOut minScale={1.25}>
+        <TransformWrapper centerOnInit centerZoomedOut minScale={1.19}>
           <TransformComponent contentClass={classes.transformContentClass}>
             <Image
-              imageUrl={processedUrl}
-              imageWidths={
-                filteredImageWidths.length > 1 ? filteredImageWidths : undefined
-              }
-              altText={image.altText || ""}
-              className={clsx(classes.image)}
-              width={maxWidth}
-              height={maxWidth}
-              draggable
+              className={clsx(
+                classes.image,
+                squareImage && classes.squareImage
+              )}
+              imageUrl={imageUrl}
+              altText={image.altText}
+              images={images}
+              width={theme.breakpoints.values.xl / 2}
             />
           </TransformComponent>
         </TransformWrapper>

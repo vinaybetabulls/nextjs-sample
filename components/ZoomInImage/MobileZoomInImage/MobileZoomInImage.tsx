@@ -17,11 +17,12 @@ const MobileZoomInImage = ({ image }: Props) => {
       const { current: img } = imgRef;
       const { current: div } = imageContainerRef;
       const imgBounds = img?.getBoundingClientRect();
-      if (img) {
+      console.log("top", imgBounds.top <= 196, imgBounds.top);
+      console.log("bottom", imgBounds.bottom <= 196, imgBounds.bottom);
+      if (img && imgBounds.top <= 196) {
+        console.log({ imgBounds });
         const value = make3dTransformValue({ x, y, scale });
         img?.style?.setProperty("transform", value);
-        img.style.minHeight = "335px";
-        img.style.minWidth = "335px";
       }
     },
     [imgRef, imageContainerRef]

@@ -14,20 +14,14 @@ const MobileZoomInImage = ({ image }: Props) => {
 
   return (
     <div className={classes.container}>
-      {/* documentation link https://github.com/retyui/react-quick-pinch-zoom/blob/master/docs/api/README.md  */}
-      <TransformWrapper
-        centerOnInit
-        centerZoomedOut
-        minPositionX={196}
-        minPositionY={20}
-        minScale={1.2}
-      >
-        <TransformComponent>
-          <div className={classes.mobileImageContainer}>
+      <div className={classes.mobileImageContainer}>
+        {/* documentation link https://github.com/retyui/react-quick-pinch-zoom/blob/master/docs/api/README.md  */}
+        <TransformWrapper centerOnInit centerZoomedOut minScale={1.25}>
+          <TransformComponent contentClass={classes.transformContentClass}>
             <img src={image.url} alt={image.altText} ref={imgRef} />
-          </div>
-        </TransformComponent>
-      </TransformWrapper>
+          </TransformComponent>
+        </TransformWrapper>
+      </div>
       {!!image.label && (
         <div className={classes.productName}>
           <p>{image.label}</p>

@@ -9,7 +9,13 @@ const useStyles = makeStyles((theme) => ({
       width: "82% !important",
     },
   },
+  transformContentClass: {
+    width: "100%",
+  },
   mobileImageContainer: {
+    "& div": {
+      width: "initial !important",
+    },
     "& img": {
       width: "100%",
       objectFit: "cover",

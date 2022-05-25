@@ -17,11 +17,7 @@ const useStyles = makeStyles((theme) => ({
       width: "initial !important",
     },
     "& img": {
-      width: "100%",
-      objectFit: "cover",
       [theme.breakpoints.down("sm")]: {
-        minHeight: "335px",
-        minWidth: "335px",
         height: "calc(100vh - 170px)",
         "@media (orientation: landscape)": {
           height: "calc(100vh - 132px)",
@@ -73,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
       position: "absolute",
       width: "100%",
-      height: "100%",
+      // height: "100%",
       left: 0,
       top: 0,
     },

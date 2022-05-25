@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
       objectFit: "cover",
       [theme.breakpoints.down("sm")]: {
-        // minHeight: "335px",
+        minHeight: "335px",
         minWidth: "335px",
-        // height: "calc(100vh - 170px)",
+        height: "calc(100vh - 170px)",
         "@media (orientation: landscape)": {
-          // height: "calc(100vh - 132px)",
+          height: "calc(100vh - 132px)",
         },
       },
     },

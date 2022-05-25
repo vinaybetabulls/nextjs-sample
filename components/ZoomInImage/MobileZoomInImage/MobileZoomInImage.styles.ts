@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "& img": {
       width: "100%",
-      // objectFit: "cover",
+      objectFit: "cover",
       [theme.breakpoints.down("sm")]: {
         // minHeight: "335px",
         minWidth: "335px",

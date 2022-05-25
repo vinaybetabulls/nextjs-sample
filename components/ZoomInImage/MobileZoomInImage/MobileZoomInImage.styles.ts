@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
     },
     "& img": {
       width: "100%",
-      objectFit: "cover",
+      // objectFit: "cover",
       [theme.breakpoints.down("sm")]: {
         // minHeight: "335px",
         minWidth: "335px",
-        height: "calc(100vh - 170px)",
+        // height: "calc(100vh - 170px)",
         "@media (orientation: landscape)": {
-          height: "calc(100vh - 132px)",
+          // height: "calc(100vh - 132px)",
         },
       },
     },

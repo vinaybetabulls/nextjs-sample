@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useRef } from "react";
 // import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Image as ImageProps } from "../../../common/props";
@@ -15,7 +15,7 @@ const MobileZoomInImage = ({ image }: Props) => {
   return (
     <div className={classes.container}>
       {/* documentation link https://github.com/retyui/react-quick-pinch-zoom/blob/master/docs/api/README.md  */}
-      <TransformWrapper>
+      <TransformWrapper centerOnInit>
         <TransformComponent>
           <div className={classes.mobileImageContainer}>
             <img src={image.url} alt={image.altText} ref={imgRef} />

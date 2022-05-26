@@ -99,9 +99,9 @@ const useStyles = makeStyles((theme) => ({
     },
     // backup  image min height if other min heights not used
     // minHeight: "200px",
-    maxHeight: "578px",
-    minHeight: "336px",
-    height: "100%",
+    // maxHeight: "578px",
+    // minHeight: "336px",
+    // height: "100%",
   },
 }));
 export default useStyles;

@@ -69,33 +69,10 @@ const MobileZoomInImage = ({ image }: Props) => {
       }))
     : undefined;
 
-  const [isPinchEnd, setIsPinchEnd] = useState(false);
-  const [isPinchStart, setIsPinchStart] = useState(false);
-
-  const handlePinchStop = (pinch, event) => {
-    console.log({ pinch, event });
-    setIsPinchEnd(true);
-  };
-
-  const handlePinchStart = (pinch, event) => {
-    console.log({ "isPinching started": pinch, event });
-    setIsPinchStart(true);
-  };
-
   return (
     <div className={classes.container}>
-      <div
-        className={
-          isPinchEnd ? classes.mobileZoomout : classes.mobileImageContainer
-        }
-      >
-        <TransformWrapper
-          centerOnInit
-          centerZoomedOut
-          minScale={1.19}
-          onPinchingStop={handlePinchStop}
-          onPinchingStart={handlePinchStart}
-        >
+      <div className={classes.mobileImageContainer}>
+        <TransformWrapper centerOnInit centerZoomedOut minScale={1.19}>
           <TransformComponent contentClass={classes.transformContentClass}>
             <img src={image.url} alt={image.altText} />
           </TransformComponent>

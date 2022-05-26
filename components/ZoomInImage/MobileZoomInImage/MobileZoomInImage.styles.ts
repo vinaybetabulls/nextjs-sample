@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   mobileImageContainer: {
-    "& div": {
-      width: "initial !important",
-    },
     "& img": {
+      width: "100%",
+      objectFit: "cover",
       [theme.breakpoints.down("sm")]: {
+        minHeight: "335px",
         height: "calc(100vh - 170px)",
         "@media (orientation: landscape)": {
           height: "calc(100vh - 132px)",
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
     // backup  image min height if other min heights not used
-    minHeight: "200px",
+    minHeight: "335px",
     // maxHeight: "578px",
     // minHeight: "336px",
     // height: "100%",

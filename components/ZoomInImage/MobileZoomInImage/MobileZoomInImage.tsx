@@ -97,20 +97,7 @@ const MobileZoomInImage = ({ image }: Props) => {
           onPinchingStart={handlePinchStart}
         >
           <TransformComponent contentClass={classes.transformContentClass}>
-            {isPinchStart ? (
-              <Image
-                className={clsx(
-                  classes.image,
-                  squareImage && classes.squareImage
-                )}
-                imageUrl={imageUrl}
-                altText={image.altText}
-                images={images}
-                width={theme.breakpoints.values.xl / 2}
-              />
-            ) : (
-              <img src={image.url} alt={image.altText} />
-            )}
+            <img src={image.url} alt={image.altText} />
           </TransformComponent>
         </TransformWrapper>
       </div>

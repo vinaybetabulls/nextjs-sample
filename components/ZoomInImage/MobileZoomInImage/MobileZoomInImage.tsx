@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 // import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Image as ImageProps } from "../../../common/props";
@@ -69,10 +69,26 @@ const MobileZoomInImage = ({ image }: Props) => {
       }))
     : undefined;
 
+  const [isPinchEnd, setIsPinchEnd] = useState(false);
+
+  const handlePinchStop = (pinch, event) => {
+    console.log({ pinch, event });
+    setIsPinchEnd(true);
+  };
+
   return (
     <div className={classes.container}>
-      <div className={classes.mobileImageContainer}>
-        <TransformWrapper centerOnInit centerZoomedOut minScale={1.19}>
+      <div
+        className={
+          isPinchEnd ? classes.mobileZoomout : classes.mobileImageContainer
+        }
+      >
+        <TransformWrapper
+          centerOnInit
+          centerZoomedOut
+          minScale={1.19}
+          onPinchingStop={handlePinchStop}
+        >
           <TransformComponent contentClass={classes.transformContentClass}>
             <Image
               className={clsx(

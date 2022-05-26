@@ -18,9 +18,22 @@ const useStyles = makeStyles((theme) => ({
     },
     "& img": {
       [theme.breakpoints.down("sm")]: {
-        // height: "calc(100vh - 170px)",
+        height: "calc(100vh - 170px)",
         "@media (orientation: landscape)": {
-          // height: "calc(100vh - 132px)",
+          height: "calc(100vh - 132px)",
+        },
+      },
+    },
+  },
+  mobileZoomout: {
+    "& div": {
+      width: "initial !important",
+    },
+    "& img": {
+      [theme.breakpoints.down("sm")]: {
+        height: "335px",
+        "@media (orientation: landscape)": {
+          height: "335px",
         },
       },
     },

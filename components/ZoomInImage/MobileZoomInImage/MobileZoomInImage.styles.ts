@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     minHeight: "336px",
     minWidth: "335px",
+    transform: "translate3d(0px, 0px, 0px) scale(1)",
+    [theme.breakpoints.down("sm")]: {
+      "@media (orientation: landscape)": {
+        transform: "translate3d(0px, 0px, 0px) scale(1.5) !important",
+      },
+    },
   },
   wrapperClass: {
     width: "initial",

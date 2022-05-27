@@ -1,6 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import QuickPinchZoom, { make3dTransformValue } from "react-quick-pinch-zoom";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import {
+  TransformWrapper,
+  TransformComponent,
+  ReactZoomPanPinchRef,
+} from "react-zoom-pan-pinch";
 import { Image as ImageProps } from "../../../common/props";
 import useStyles from "./MobileZoomInImage.styles";
 import Image from "../../Image/Image";
@@ -69,11 +73,41 @@ const MobileZoomInImage = ({ image }: Props) => {
       }))
     : undefined;
 
+  const [minX, setMinX] = useState(335);
+  const [minY, setMinY] = useState(336);
+  const matchesMediaQuery = window.matchMedia(
+    "(max-width:999px) and (orientation:landscape)"
+  ).matches;
+  const updateCurrentState = () => {
+    console.log({ matchesMediaQuery });
+    if (matchesMediaQuery) {
+      setMinX(668);
+      setMinY(275);
+    } else {
+      setMinX(335);
+      setMinY(336);
+    }
+  };
+  useEffect(() => {
+    window?.addEventListener("orientationchange", updateCurrentState);
+    return () => {
+      window?.removeEventListener("orientationchange", updateCurrentState);
+    };
+  }, [matchesMediaQuery]);
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>
-        <TransformWrapper centerOnInit centerZoomedOut minScale={1.19}>
-          <TransformComponent contentClass={classes.transformContentClass}>
+        <TransformWrapper
+          centerOnInit
+          centerZoomedOut
+          minScale={1.15}
+          minPositionY={minX}
+          minPositionX={minY}
+        >
+          <TransformComponent
+            contentClass={classes.transformContentClass}
+            wrapperClass={classes.wrapperClass}
+          >
             <img src={image.url} alt={image.altText} />
           </TransformComponent>
         </TransformWrapper>

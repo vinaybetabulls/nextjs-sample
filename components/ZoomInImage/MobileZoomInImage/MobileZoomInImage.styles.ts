@@ -12,12 +12,15 @@ const useStyles = makeStyles((theme) => ({
   transformContentClass: {
     width: "100%",
   },
+  wrapperClass: {
+    width: "initial",
+  },
   mobileImageContainer: {
     "& img": {
       width: "100%",
       objectFit: "cover",
       [theme.breakpoints.down("sm")]: {
-        minHeight: "335px",
+        // minHeight: "335px",
         height: "calc(100vh - 170px)",
         "@media (orientation: landscape)": {
           height: "calc(100vh - 132px)",

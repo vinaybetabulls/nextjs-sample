@@ -79,8 +79,7 @@ const MobileZoomInImage = ({ image }: Props) => {
     "(max-width:999px) and (orientation:landscape)"
   ).matches;
   const updateCurrentState = (event) => {
-    console.log("hi..", event.currentTarget.type);
-    console.log({ matchesMediaQuery });
+    console.log("updateCurrentState", { matchesMediaQuery });
     if (matchesMediaQuery) {
       setMinX(335);
       setMinY(336);
@@ -90,9 +89,9 @@ const MobileZoomInImage = ({ image }: Props) => {
     }
   };
   useEffect(() => {
-    screen.orientation.addEventListener("change", updateCurrentState);
+    window.addEventListener("orientationchange", updateCurrentState);
     return () => {
-      screen.orientation?.removeEventListener("change", updateCurrentState);
+      window?.removeEventListener("orientationchange", updateCurrentState);
     };
   });
   return (

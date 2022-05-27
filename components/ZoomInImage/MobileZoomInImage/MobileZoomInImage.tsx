@@ -74,7 +74,7 @@ const MobileZoomInImage = ({ image }: Props) => {
     : undefined;
 
   const [minX, setMinX] = useState(335);
-  const [minY, setMinY] = useState(336);
+  const [minY, setMinY] = useState(200);
   const matchesMediaQuery = window.matchMedia(
     "(max-width:999px) and (orientation:landscape)"
   ).matches;
@@ -88,28 +88,49 @@ const MobileZoomInImage = ({ image }: Props) => {
       setMinY(275);
     }
   };
-  useEffect(() => {
-    window.addEventListener("orientationchange", updateCurrentState);
-    return () => {
-      window?.removeEventListener("orientationchange", updateCurrentState);
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("resize", updateCurrentState);
+  //   return () => {
+  //     window?.removeEventListener("resize", updateCurrentState);
+  //   };
+  // }, []);
+  const handlePinching = (ref: ReactZoomPanPinchRef, event) => {
+    // console.log("ref", ref.state);
+  };
+  const handleZoom = (ref: ReactZoomPanPinchRef, event) => {
+    console.log({
+      refstate: ref.state,
+      ref: ref,
+      eventOffsetx: event.offsetX,
+      offsetY: event.offsetY,
+    });
+    event.preventDefault();
+    console.log({ event });
+    if (event.offsetX <= 335 && event.offsetY <= 336) {
+      return false;
+    }
+  };
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>
         <TransformWrapper
           centerOnInit
           centerZoomedOut
-          minScale={1.2}
+          minScale={1.15}
           minPositionY={minY}
           minPositionX={minX}
+          onPanning={handlePinching}
+          onZoom={handleZoom}
+          panning={{ lockAxisX: true, lockAxisY: true }}
         >
-          <TransformComponent
-            contentClass={classes.transformContentClass}
-            wrapperClass={classes.wrapperClass}
-          >
-            <img src={image.url} alt={image.altText} />
-          </TransformComponent>
+          {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+            <TransformComponent
+              contentClass={classes.transformContentClass}
+              wrapperClass={classes.wrapperClass}
+            >
+              <img src={image.url} alt={image.altText} />
+            </TransformComponent>
+          )}
         </TransformWrapper>
       </div>
       {!!image.label && (

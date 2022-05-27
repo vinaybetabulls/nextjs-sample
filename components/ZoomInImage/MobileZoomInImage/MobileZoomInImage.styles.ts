@@ -8,9 +8,14 @@ const useStyles = makeStyles((theme) => ({
   },
   transformContentClass: {
     width: "100%",
+    minHeight: "336px",
+    minWidth: "335px",
   },
   wrapperClass: {
     width: "initial",
+    display: "flex",
+    minHeight: "336px",
+    minWidth: "335px",
   },
   mobileImageContainer: {
     "& img": {

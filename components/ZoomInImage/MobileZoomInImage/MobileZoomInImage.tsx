@@ -78,31 +78,32 @@ const MobileZoomInImage = ({ image }: Props) => {
   const matchesMediaQuery = window.matchMedia(
     "(max-width:999px) and (orientation:landscape)"
   ).matches;
-  const updateCurrentState = () => {
+  const updateCurrentState = (event) => {
+    console.log("hi..", event.currentTarget.type);
     console.log({ matchesMediaQuery });
     if (matchesMediaQuery) {
-      setMinX(668);
-      setMinY(275);
-    } else {
       setMinX(335);
       setMinY(336);
+    } else {
+      setMinX(625);
+      setMinY(275);
     }
   };
   useEffect(() => {
-    window?.addEventListener("orientationchange", updateCurrentState);
+    screen.orientation.addEventListener("change", updateCurrentState);
     return () => {
-      window?.removeEventListener("orientationchange", updateCurrentState);
+      screen.orientation?.removeEventListener("change", updateCurrentState);
     };
-  }, [matchesMediaQuery]);
+  });
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>
         <TransformWrapper
           centerOnInit
           centerZoomedOut
-          minScale={1.15}
-          minPositionY={minX}
-          minPositionX={minY}
+          minScale={1.2}
+          minPositionY={minY}
+          minPositionX={minX}
         >
           <TransformComponent
             contentClass={classes.transformContentClass}

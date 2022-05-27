@@ -5,9 +5,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     maxWidth: "100%",
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "82% !important",
-    },
   },
   transformContentClass: {
     width: "100%",

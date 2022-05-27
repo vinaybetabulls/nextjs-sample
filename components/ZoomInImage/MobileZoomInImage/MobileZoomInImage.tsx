@@ -80,10 +80,10 @@ const MobileZoomInImage = ({ image }: Props) => {
   ).matches;
   const updateCurrentState = (event) => {
     console.log("updateCurrentState", { matchesMediaQuery });
-    if (matchesMediaQuery) {
+    if (screen.orientation.type.includes("portrait")) {
       setMinX(335);
       setMinY(336);
-    } else {
+    } else if (screen.orientation.type.includes("landscape")) {
       setMinX(625);
       setMinY(275);
     }
@@ -93,7 +93,7 @@ const MobileZoomInImage = ({ image }: Props) => {
     return () => {
       window?.removeEventListener("orientationchange", updateCurrentState);
     };
-  });
+  }, []);
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>

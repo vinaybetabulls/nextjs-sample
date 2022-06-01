@@ -21,95 +21,8 @@ const squareImage = true;
 
 const MobileZoomInImage = ({ image }: Props) => {
   const classes = useStyles();
-  const imgRef = useRef<HTMLImageElement>(null);
   const theme = useTheme();
-  const imageUrl =
-    image?.url &&
-    processImageUrl(
-      image.url,
-      {
-        w: theme.breakpoints.values.xl / 2,
-        aspect: squareImage ? "1:1" : "2:1",
-      },
-      ["$poi-square$"]
-    );
 
-  const breakpoints: {
-    breakpoint: Breakpoint;
-    query: "min-width" | "max-width";
-    w: number;
-    aspect: string;
-  }[] = [
-    {
-      breakpoint: "xs",
-      query: "max-width",
-      w: theme.breakpoints.values.xs,
-      aspect: "1:1",
-    },
-    {
-      breakpoint: "sm",
-      query: "max-width",
-      w: theme.breakpoints.values.sm,
-      aspect: squareImage ? "1:1" : "2:1",
-    },
-    {
-      breakpoint: "md",
-      query: "max-width",
-      w: theme.breakpoints.values.md / 2,
-      aspect: squareImage ? "1:1" : "1:1",
-    },
-    {
-      breakpoint: "lg",
-      query: "max-width",
-      w: theme.breakpoints.values.lg / 2,
-      aspect: squareImage ? "1:1" : "1:1",
-    },
-  ];
-  const images = image?.url
-    ? breakpoints.map(({ breakpoint, query, w, aspect }) => ({
-        breakpoint,
-        query,
-        filename: processImageUrl(image.url, { w, aspect }, ["$poi-square$"]),
-      }))
-    : undefined;
-
-  const [minX, setMinX] = useState(335);
-  const [minY, setMinY] = useState(200);
-  const matchesMediaQuery = window.matchMedia(
-    "(max-width:999px) and (orientation:landscape)"
-  ).matches;
-  const updateCurrentState = (event) => {
-    console.log("updateCurrentState", { matchesMediaQuery });
-    if (screen.orientation.type.includes("portrait")) {
-      setMinX(335);
-      setMinY(336);
-    } else if (screen.orientation.type.includes("landscape")) {
-      setMinX(625);
-      setMinY(275);
-    }
-  };
-  // useEffect(() => {
-  //   window.addEventListener("resize", updateCurrentState);
-  //   return () => {
-  //     window?.removeEventListener("resize", updateCurrentState);
-  //   };
-  // }, []);
-  const handlePinching = (ref: ReactZoomPanPinchRef, event) => {
-    // console.log("ref", ref.state);
-  };
-  const handleZoom = (ref: ReactZoomPanPinchRef, event) => {
-    console.log({
-      refstate: ref.state,
-      ref: ref,
-      eventOffsetx: event.offsetX,
-      offsetY: event.offsetY,
-    });
-    event.preventDefault();
-    console.log({ event });
-    if (event.offsetX <= 335 && event.offsetY <= 336) {
-      return false;
-    }
-  };
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>
@@ -117,10 +30,6 @@ const MobileZoomInImage = ({ image }: Props) => {
           centerOnInit
           centerZoomedOut
           minScale={1.15}
-          minPositionY={minY}
-          minPositionX={minX}
-          onPanning={handlePinching}
-          onZoom={handleZoom}
           panning={{ lockAxisX: true, lockAxisY: true }}
         >
           {({ zoomIn, zoomOut, resetTransform, ...rest }) => (

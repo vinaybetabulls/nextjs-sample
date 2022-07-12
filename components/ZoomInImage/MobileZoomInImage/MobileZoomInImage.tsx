@@ -26,7 +26,12 @@ const MobileZoomInImage = ({ image }: Props) => {
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>
-        <TransformWrapper centerOnInit centerZoomedOut minScale={1.15}>
+        <TransformWrapper
+          centerOnInit
+          centerZoomedOut
+          minScale={1.15}
+          panning={{ lockAxisX: true, lockAxisY: true }}
+        >
           {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
             <TransformComponent
               contentClass={classes.transformContentClass}

@@ -22,7 +22,7 @@ const squareImage = true;
 const MobileZoomInImage = ({ image }: Props) => {
   const classes = useStyles();
   const theme = useTheme();
-
+  const x = processImageUrl(image.url);
   return (
     <div className={classes.container}>
       <div className={classes.mobileImageContainer}>
@@ -32,7 +32,7 @@ const MobileZoomInImage = ({ image }: Props) => {
               contentClass={classes.transformContentClass}
               wrapperClass={classes.wrapperClass}
             >
-              <img src={image.url} alt={image.altText} />
+              <img src={x} alt={image.altText} />
             </TransformComponent>
           )}
         </TransformWrapper>

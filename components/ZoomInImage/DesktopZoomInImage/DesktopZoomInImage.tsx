@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
-import useStyles from './../ZoomInImage.styles'
-import { Magnifier, MOUSE_ACTIVATION, TOUCH_ACTIVATION } from 'react-image-magnifiers'
-import { Image } from '../../../common/props'
+import React, { useState } from "react";
+import useStyles from "./../ZoomInImage.styles";
+import {
+  Magnifier,
+  MOUSE_ACTIVATION,
+  TOUCH_ACTIVATION,
+} from "react-image-magnifiers";
+import { Image } from "../../../common/props";
+import { processImageUrl } from "../../../utils/image";
 
 type Props = {
-  image: Image
-}
+  image: Image;
+};
 
 const DesktopZoomInImage = ({ image }: Props) => {
-  const classes = useStyles()
-  const [isZoomIn, setZoomIn] = useState(false)
+  const classes = useStyles();
+  const [isZoomIn, setZoomIn] = useState(false);
+  const imageURL = processImageUrl(image.url);
 
   return (
     <div className={classes.perimeter} onClick={() => setZoomIn(!isZoomIn)}>
@@ -29,7 +35,7 @@ const DesktopZoomInImage = ({ image }: Props) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default DesktopZoomInImage
+export default DesktopZoomInImage;
